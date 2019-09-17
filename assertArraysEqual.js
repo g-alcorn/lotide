@@ -1,4 +1,4 @@
-const eqArrays = function(array1, array2) {
+const assertArraysEqual = function(array1, array2) {
   var result = false;
   if (array1.length !== array2.length)
     result =false;
@@ -17,5 +17,5 @@ const eqArrays = function(array1, array2) {
     console.log("The arrays are not equal.");
 };
 
-eqArrays([1, 2, 3], [1, 2, 3]); //test arrays are equal
-eqArrays([1, 2, 3], [1, 3, 3]); //test arrays are unequal
+assertArraysEqual([1, 2, 3], [1, 2, 3]); //test arrays are equal
+assertArraysEqual([1, 2, 3], [1, 3, 3]); //test arrays are unequal
