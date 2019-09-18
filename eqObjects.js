@@ -29,17 +29,15 @@ const eqObjects = function(object1, object2) {
     return false;
 
   for (var arrayCheck in keys1) {
-    console.log(object1[keys1[arrayCheck]]);
+    //console.log(object1[keys1[arrayCheck]]);
 
-
-    if (!(Array.isArray(object1[arrayCheck]) && Array.isArray(object2[arrayCheck]))) {
+    if (Array.isArray(object1[arrayCheck]) || Array.isArray(object2[arrayCheck])) {
       return false
-    } else if (!eqArrays(object1[arrayCheck],object2[arrayCheck])) {
-      return false;
-    } else if (!(Array.isArray(object1[arrayCheck]) && Array.isArray(object2[arrayCheck]))) {
+    } else if (Array.isArray(object1[arrayCheck]) && Array.isArray(object2[arrayCheck])) {
+      eqArrays(object1[arrayCheck], object2[arrayCheck]);
+    } else {
       for (var i = 0; i < keys1.length; i++) {
         if (keys1[i] !== keys2[i]) {
-          console.log(keys1[i]);
           return false;
         }
       }
@@ -58,9 +56,11 @@ const eqObjects = function(object1, object2) {
 // console.log(eqObjects(test3, test3));
 
 const dc = { d: ["2", 3], c: "1" };
-//assertEqual(eqObjects(cd, dc), true); // => true
 
 const cd1 = { c: ["1", "2"], d: ["2", 3] };
 const cd2 = { c: ["1", "2"], d: ["2", 3] };
-console.log(eqArrays(["2", 3], ["2", 3]));
-assertEqual(eqObjects(cd1, cd2), true); // => false
+const cd3 = { c: ["1", "2"], d: ["2", "3"] };
+assertEqual(eqObjects(cd1, cd2), true); // => true
+assertEqual(eqObjects({a: "asdf", b: "asdf"}, cd1), false); // => false
+assertEqual(eqObjects(dc, cd2), false); // => false
+assertEqual(eqObjects(cd1, cd3), true); // => false
