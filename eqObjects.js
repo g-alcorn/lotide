@@ -8,32 +8,59 @@ const assertEqual = function(actual, expected) {
   }
 };
 
+const eqArrays = function(array1, array2) {
+  if (array1.length !== array2.length)
+    return false;
+
+  for (var i = 0; i < array1.length; i++) {
+    if (array1[i] !== array2[i])
+      return false;
+  }
+  return true;
+};
+
 // Returns true if both objects have identical keys with identical values.
 // Otherwise you get back a big fat false!
 const eqObjects = function(object1, object2) {
   let keys1 = Object.keys(object1);
   let keys2 = Object.keys(object2);
 
-  if (keys1.length === keys2.length){
-    let condition = false;
-    for (var i = 0; i < keys1.length; i++){
-      if (keys1[i] === keys2[i]) {
-        condition = true;
-      } else
-        return condition;
+  if (keys1.length !== keys2.length) 
+    return false;
+
+  for (var arrayCheck in keys1) {
+    console.log(object1[keys1[arrayCheck]]);
+
+
+    if (!(Array.isArray(object1[arrayCheck]) && Array.isArray(object2[arrayCheck]))) {
+      return false
+    } else if (!eqArrays(object1[arrayCheck],object2[arrayCheck])) {
+      return false;
+    } else if (!(Array.isArray(object1[arrayCheck]) && Array.isArray(object2[arrayCheck]))) {
+      for (var i = 0; i < keys1.length; i++) {
+        if (keys1[i] !== keys2[i]) {
+          console.log(keys1[i]);
+          return false;
+        }
+      }
     }
 
-    if (condition)
-      return condition;
-  } else
-  return false;
+    return true;
+  }
 };
 
-const test1 = { aaa: 3, bbb: 5, ccc: 7};
-const test2 = { ccc: 8, aaa: 5, bbb: 3};
-const test3 = { ddd: 10, ccc: 8, aaa: 5, bbb: 3};
+// const test1 = { aaa: 3, bbb: 5, ccc: 7};
+// const test2 = { ccc: 8, aaa: 5, bbb: 3};
+// const test3 = { ddd: 10, ccc: 8, aaa: 5, bbb: 3};
 
+// console.log(eqObjects(test1, test2));
+// console.log(eqObjects(test1, test3));
+// console.log(eqObjects(test3, test3));
 
-console.log(eqObjects(test1, test2));
-console.log(eqObjects(test1, test3));
-console.log(eqObjects(test3, test3));
+const dc = { d: ["2", 3], c: "1" };
+//assertEqual(eqObjects(cd, dc), true); // => true
+
+const cd1 = { c: ["1", "2"], d: ["2", 3] };
+const cd2 = { c: ["1", "2"], d: ["2", 3] };
+console.log(eqArrays(["2", 3], ["2", 3]));
+assertEqual(eqObjects(cd1, cd2), true); // => false
