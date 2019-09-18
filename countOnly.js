@@ -13,13 +13,15 @@ const assertEqual = function(actual, expected) {
 const countOnly = function(allItems, itemsToCount) {
   const response = {};
 
-  for (var items in itemsToCount) {
-    if (itemsToCount[items]) {
-      response[allItems] += 1;
+  for (const item of allItems) {
+    console.log(item);
+    
+    if(itemsToCount[item]){
+      response[item] += 1;
     }
   }
   return response;
-}
+};
 
 const firstNames = [
   "Karl",
