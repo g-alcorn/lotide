@@ -10,11 +10,13 @@ const assertEqual = function(actual, expected) {
 
 const countOnly = function(text) {
   const response = {};
-  for(let char of text) {
-    if(response[char]){
-      response[char] += 1;
+  let newText = text.replace(" ", "");
+  for(let char of newText) {
+
+    if(!response[char]){
+      response[char] = 1;
     } else
-    response[char] = 0;
+    response[char] += 1;
 
     // if(text[char]){
     //   if(response[char]){
@@ -28,7 +30,5 @@ const countOnly = function(text) {
 
 
 
-var testing = "bbbcccddd";
+var testing = "bbbccc ddd";
 console.log(countOnly(testing));
-
-assertEqual(countOnly(testing),{b: 3, c: 3, d: 3});
