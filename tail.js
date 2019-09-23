@@ -1,13 +1,3 @@
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {
-    console.log(`🥰Assertion passed: ${actual} === ${expected}`);
-    return;
-  } else {
-    console.log(`🤬Assertion failed: ${actual} !== ${expected}`);
-    return;
-  }
-};
-
 const tail = function(input) {
   const response = [];
   if (input.length <= 1)
@@ -19,9 +9,4 @@ const tail = function(input) {
   return response;
 };
 
-//testing
-const testInput = ["Hello","Lighthouse","Labs"];
-const test1 = tail(testInput);
-assertEqual(test1.length, 2);
-assertEqual(test1[0], "Lighthouse");
-assertEqual(testInput.length,3);
+module.exports = tail;
