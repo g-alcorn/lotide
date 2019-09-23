@@ -1,8 +1,21 @@
-const assertArraysEqual = require('../assertArraysEqual');
+const eqArrays = require('../eqArrays');
 const middle = require('../middle');
-assertArraysEqual(middle([1, 2, 3, 4]), [2, 3]); // => [2, 3]
-assertArraysEqual(middle([1, 2, 3, 4, 5, 6]), [3, 4]); // => [3, 4]
-assertArraysEqual(middle([1, 2, 3]), [2]); // => [2]
-assertArraysEqual(middle([1, 2, 3, 4, 5]), [3]); // => [3]
-assertArraysEqual(middle([1]), []); // => []
-assertArraysEqual(middle([1, 2]), []); // => []
+const assert = require('chai').assert;
+
+describe("testing middle of arrays", () => {
+  it("should return [2, 3] from [1, 2, 3, 4]", () => {
+    assert.isTrue(eqArrays(middle([1, 2, 3, 4]), [2, 3]));
+  });
+
+  it("should return [2] from [1, 2, 3]", () => {
+    assert.isTrue(eqArrays(middle([1, 2, 3]), [2]));
+  });
+
+  it("should return [] from [1]", () => {
+    assert.isTrue(eqArrays(middle([1]), []));
+  });
+
+  it("should return [] from [1, 2]", () => {
+    assert.isTrue(eqArrays(middle([1, 2]), []));
+  });
+});
