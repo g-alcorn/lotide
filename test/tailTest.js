@@ -2,7 +2,6 @@ const eqArrays = require('../eqArrays');
 const tail = require('../tail');
 const assert = require('chai').assert;
 
-
 //testing
 const testInput = ["Hello","Lighthouse","Labs"];
 const test1 = tail(testInput);
